@@ -1,0 +1,164 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Arc {
+  _id: String!
+  children: [Arc!]
+  collaborators: [String!]
+  comments: [String!]
+  elevator: String
+  markdown: String!
+  owner: String!
+  parent: String
+  publishedDate: String!
+  refutations: [String!]
+  sequence: Float!
+  source: String
+  tags: [String!]!
+  title: String!
+  viewers: [String!]
+}
+
+type Comment {
+  _id: String!
+  arc: String!
+  children: [Comment!]
+  markdown: String!
+  owner: String!
+  parent: String
+  publishedDate: String!
+  title: String!
+}
+
+input CreateArcInput {
+  collaborators: [String!]
+  elevator: String!
+  markdown: String!
+  owner: String!
+  parent: String
+  sequence: Float! = 0
+  tags: [String!]
+  title: String!
+}
+
+input CreateCommentInput {
+  markdown: String!
+  owner: String!
+  parent: String
+  title: String!
+}
+
+input CreateRefutationInput {
+  elevator: String!
+  markdown: String!
+  owner: String!
+  parent: String
+  publishedDate: DateTime! = "2023-12-01T00:24:37.802Z"
+  sequence: Float!
+  tags: [String!]!
+  title: String!
+}
+
+input CreateSourceLinkInput {
+  markdown: String!
+  owner: String
+  publishedDate: DateTime! = "2023-12-01T00:24:37.802Z"
+  tags: [String!]!
+  title: String!
+  uri: String!
+}
+
+input CreateUserInput {
+  auth0Id: String!
+  bio: String!
+  email: String!
+  imageUrl: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createArc(input: CreateArcInput!): Arc!
+  createComment(input: CreateCommentInput!): Comment!
+  createRefutation(input: CreateRefutationInput!): Refutation!
+  createSourceLink(input: CreateSourceLinkInput!): SourceLink!
+  createUser(input: CreateUserInput!): User!
+  deleteArc(id: ID!): Arc!
+  deleteComment(id: ID!): Comment!
+  deleteRefutation(id: ID!): Refutation!
+  deleteSourceLink(id: ID!): SourceLink!
+  deleteUser(_id: String!): User!
+  updateArc(id: ID!, input: CreateArcInput!): Arc!
+  updateComment(id: ID!, input: CreateCommentInput!): Comment!
+  updateRefutation(id: ID!, input: CreateRefutationInput!): Refutation!
+  updateSourceLink(id: ID!, input: CreateSourceLinkInput!): SourceLink!
+  updateUser(_id: String!, input: CreateUserInput!): User!
+}
+
+type Query {
+  arc(id: ID!): Arc!
+  arcs: [Arc!]!
+  comment(id: ID!): Comment!
+  comments: [Comment!]!
+  refutation(id: ID!): Refutation!
+  refutations: [Refutation!]!
+  sourceLink(id: ID!): SourceLink!
+  sourceLinks: [SourceLink!]!
+  user(_id: String!): User!
+  userByAuth0Id(auth0Id: String!): User!
+  users: [User!]!
+}
+
+type Refutation {
+  _id: String!
+  arc: String!
+  children: [Refutation!]
+  collaborators: [String!]
+  comments: [String!]
+  elevator: String
+  markdown: String!
+  owner: String!
+  parent: String
+  publishedDate: String!
+  sequence: Float!
+  source: String
+  tags: [String!]!
+  title: String!
+  viewers: [String!]
+}
+
+type SourceLink {
+  _id: String!
+  arcs: [String!]
+  collaborators: [String!]
+  elevator: String
+  markdown: String!
+  owner: String!
+  publishedDate: String!
+  refutations: [String!]
+  sequence: Float!
+  tags: [String!]!
+  title: String!
+  uri: String
+  viewers: [String!]
+}
+
+type User {
+  _id: String!
+  arcs: [String!]
+  auth0Id: String!
+  bio: String
+  bookmarks: [String!]
+  email: String!
+  favorites: [String!]
+  imageUrl: String
+  isAdmin: Boolean!
+  pinned: [String!]
+  recents: [String!]
+  username: String!
+}

@@ -1,0 +1,7 @@
+{
+  "name": "hv-api-nest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
